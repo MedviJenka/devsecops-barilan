@@ -1,16 +1,40 @@
 from flask import Flask, jsonify, Response
+from dataclasses import dataclass
+
 
 app = Flask(__name__)
 
 
-def person(name: str, person_id: str) -> Response:
-    return jsonify([name, person_id])
+@dataclass
+class Person:
+
+    name: str
+    age: int
+    email: str
+
+    def info(self) -> dict:
+        return {
+            'name': self.name,
+            'age': self.age
+        }
+
+    @property
+    def get_main(self) -> str:
+        return self.email
+
+
+data = Person(name='jenia', age=30, email='jenia@gmail.com')
 
 
 @app.route('/', methods=['GET'])
 def main() -> Response:
-    return person(name='jenia', person_id='1234567')
+    return jsonify(data.info())
+
+
+@app.route('/email', methods=['GET'])
+def get_email():
+    return jsonify(data.email)
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=8080, debug=True)
+    app.run(host='0.0.0.0', port=8083, debug=True)
