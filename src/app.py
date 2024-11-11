@@ -19,7 +19,7 @@ class Person:
         }
 
     @property
-    def get_main(self) -> str:
+    def get_email(self) -> str:
         return self.email
 
 
@@ -33,7 +33,7 @@ def main() -> Response:
 
 @app.route('/email', methods=['GET'])
 def get_email():
-    return jsonify(data.email)
+    return jsonify(data.get_email)
 
 
 if __name__ == '__main__':
