@@ -1,40 +1,20 @@
+from src.contants import JSON_DATA
+from src.core.student import Student
 from flask import Flask, jsonify, Response
-from dataclasses import dataclass
 
-from src.file1 import get_all
 
 app = Flask(__name__)
-
-
-@dataclass
-class Person:
-
-    name: str
-    age: int
-    email: str
-
-    def info(self) -> dict:
-        return {
-            'name': self.name,
-            'age': self.age
-        }
-
-    @property
-    def get_email(self) -> str:
-        return self.email
-
-
-data = Person(name='jenia', age=30, email='jenia@gmail.com')
+student = Student(name='jenia', age=30, email='jenia@gmail.com')
 
 
 @app.route('/', methods=['GET'])
 def main() -> Response:
-    return jsonify(get_all())
+    return jsonify(student.get_person_data(JSON_DATA))
 
 
 @app.route('/email', methods=['GET'])
 def get_email() -> Response:
-    return jsonify(data.get_email)
+    return jsonify(student.get_email)
 
 
 if __name__ == '__main__':
