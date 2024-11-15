@@ -1,6 +1,7 @@
 from flask import Flask, jsonify, Response
 from dataclasses import dataclass
 
+from src.file1 import get_all
 
 app = Flask(__name__)
 
@@ -28,11 +29,11 @@ data = Person(name='jenia', age=30, email='jenia@gmail.com')
 
 @app.route('/', methods=['GET'])
 def main() -> Response:
-    return jsonify(data.info())
+    return jsonify(get_all())
 
 
 @app.route('/email', methods=['GET'])
-def get_email():
+def get_email() -> Response:
     return jsonify(data.get_email)
 
 
