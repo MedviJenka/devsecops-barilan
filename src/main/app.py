@@ -1,4 +1,4 @@
-from src.contants import JSON_DATA
+from src.infra.contants import JSON_DATA
 from src.core.student import Student
 from flask import Flask, jsonify, Response
 
