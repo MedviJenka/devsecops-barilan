@@ -7,8 +7,13 @@ app = Flask(__name__)
 student = Student(name='jenia', age=30, email='jenia@gmail.com')
 
 
-@app.route('/', methods=['GET'])
-def main() -> Response:
+@app.route('/')
+def main() -> str:
+    return 'Flask Project'
+
+
+@app.route('/data', methods=['GET'])
+def fetch_info() -> Response:
     return jsonify(student.get_person_data(JSON_DATA))
 
 
