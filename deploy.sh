@@ -1,6 +1,6 @@
 #!/bin/bash
 minikube start
-minikube enable addons ingress
+minikube addons enable ingress
 
 MINIKUBE_IP=$(minikube ip)
 ENTRY="$MINIKUBE_IP app.local.com"
