@@ -12,5 +12,5 @@ else
   echo "Entry already exists: $ENTRY"
 fi
 grep -qxF "$(minikube ip) ai-bot.local.com" /etc/hosts || echo "$(minikube ip) ai-bot.local.com" | sudo tee -a /etc/hosts
-kubectl apply -f .
+kubectl /k8s/apply -f .
 curl http://app.local.com/health
